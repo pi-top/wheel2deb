@@ -4,9 +4,6 @@ RUN apt-get -yq update \
     git \
  && apt-get clean
 COPY . /src
-RUN git tag
-RUN git status
-RUN git describe
 RUN cd src && python3 setup.py bdist_wheel
 
 
