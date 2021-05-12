@@ -3,8 +3,8 @@ RUN apt-get -yq update \
  && apt-get -yq --no-install-suggests --no-install-recommends install \
     git \
  && apt-get clean
-COPY . /src
-COPY .git/ /src/.git/
+WORKDIR /src
+COPY . ./
 RUN ls -la /src
 RUN cd src && python3 setup.py bdist_wheel
 
