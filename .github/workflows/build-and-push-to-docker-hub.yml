@@ -14,21 +14,6 @@ jobs:
   build-push-docker-hub:
     runs-on: ubuntu-20.04
     steps:
-      # https://github.com/actions/checkout/issues/335#issuecomment-763159788
-      # https://github.com/pypa/setuptools_scm/issues/278
-      - name: Upgrade git
-        run: |
-          sudo add-apt-repository ppa:git-core/ppa
-          sudo apt update
-          sudo apt install -y git
-
-      - name: Checkout code
-        uses: actions/checkout@v2.2.0
-        with:
-          fetch-depth: 0
-
-      - run: ls -la
-
       - name: Build, don't push (test)
         if: github.ref != 'refs/heads/master'
         uses: docker/build-push-action@v2

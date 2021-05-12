@@ -3,10 +3,9 @@ RUN apt-get -yq update \
  && apt-get -yq --no-install-suggests --no-install-recommends install \
     git \
  && apt-get clean
+RUN git clone https://github.com/pi-top/wheel2deb /src
 WORKDIR /src
-COPY . ./
-RUN ls -la /src
-RUN cd src && python3 setup.py bdist_wheel
+RUN python3 setup.py bdist_wheel
 
 
 FROM debian:buster AS base
