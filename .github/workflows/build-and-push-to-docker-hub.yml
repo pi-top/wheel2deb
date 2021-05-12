@@ -14,6 +14,16 @@ jobs:
   build-push-docker-hub:
     runs-on: ubuntu-20.04
     steps:
+      # https://github.com/actions/checkout/issues/335
+      # https://github.com/pypa/setuptools_scm/issues/278
+      - name: Upgrade git
+        run: |
+          sudo apt-get install -y software-properties-common \
+            && sudo apt-get update \
+            && sudo add-apt-repository -y ppa:git-core/ppa \
+            && sudo apt-get update \
+            && sudo apt-get install -y git
+
       - name: Checkout code
         uses: actions/checkout@v2.2.0
         with:
