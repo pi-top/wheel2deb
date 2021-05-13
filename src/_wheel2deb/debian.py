@@ -189,9 +189,16 @@ class SourcePackage:
         """
         Generate debian/rules
         """
+
+        def get_package_name_from_setup_py():
+            # TODO
+            return "TODO"
+
+
         self.dump_tpl(
             "rules.j2",
             file=self.debian / "rules",
+            module_name=get_package_name_from_setup_py(),
             shlibdeps_params="".join(
                 [" -l" + str(self.src / x) for x in self.wheel.record.lib_dirs]
             ),
@@ -274,8 +281,8 @@ class SourcePackage:
         self.install()
         self.rules()
         self.copyright()
-        # self.postinst()
-        # self.prerm()
+        self.postinst()
+        self.prerm()
 
         # dpkg-shlibdeps won't work without debian/control
         self.search_shlibs_deps()
