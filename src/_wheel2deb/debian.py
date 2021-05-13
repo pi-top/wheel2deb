@@ -274,8 +274,8 @@ class SourcePackage:
         self.install()
         self.rules()
         self.copyright()
-        self.postinst()
-        self.prerm()
+        # self.postinst()
+        # self.prerm()
 
         # dpkg-shlibdeps won't work without debian/control
         self.search_shlibs_deps()
